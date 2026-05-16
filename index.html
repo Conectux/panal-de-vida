@@ -27,8 +27,8 @@ nav.scrolled { padding:9px 60px; box-shadow:0 2px 20px rgba(0,0,0,0.06); }
 .nav-cart:hover .cart-count { background:var(--carbon); color:var(--gold); }
 
 /* HERO */
-#home { min-height:100vh; display:grid; grid-template-columns:52% 48%; padding-top:68px; }
-.hero-left { display:flex; flex-direction:column; justify-content:center; padding:60px 56px 60px 80px; position:relative; z-index:2; overflow:hidden; }
+#home { min-height:100vh; display:grid; grid-template-columns:52% 48%; padding-top:68px; position:relative; }
+.hero-left { display:flex; flex-direction:column; justify-content:center; padding:60px 56px 60px 80px; position:relative; z-index:2; }
 .hero-left::before { content:''; position:absolute; inset:0; background-image:radial-gradient(rgba(249,195,1,0.2) 1.5px,transparent 1.5px); background-size:26px 26px; z-index:0; pointer-events:none; }
 .hero-eyebrow { font-family:"Cormorant Garamond",serif; font-style:italic; font-weight:300; font-size:17px; color:var(--brown); letter-spacing:3px; text-transform:uppercase; margin-bottom:22px; opacity:0; animation:fadeUp 0.7s 0.2s ease forwards; position:relative; z-index:1; display:flex; align-items:center; gap:16px; }
 .hero-eyebrow::before { content:''; display:inline-block; width:40px; height:1.5px; background:var(--gold); flex-shrink:0; }
@@ -47,7 +47,7 @@ nav.scrolled { padding:9px 60px; box-shadow:0 2px 20px rgba(0,0,0,0.06); }
 .hero-right { position:relative; overflow:hidden; opacity:0; animation:fadeIn 1.2s 0.3s ease forwards; }
 .hero-right img { width:100%; height:100%; object-fit:cover; object-position:center top; }
 .hero-right::after { content:""; position:absolute; inset:0; background:linear-gradient(to right,var(--cream-light) 0%,transparent 30%); }
-.hero-badge { position:absolute; bottom:44px; left:-16px; z-index:3; background:var(--gold); width:92px; height:92px; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 8px 32px rgba(249,195,1,0.5); animation:spin-slow 14s linear infinite; }
+.hero-badge { position:absolute; bottom:48px; left:calc(52% - 46px); z-index:5; background:var(--gold); width:92px; height:92px; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 8px 32px rgba(249,195,1,0.5); animation:spin-slow 14s linear infinite; }
 .hero-badge span { font-family:"Bebas Neue",sans-serif; font-size:12px; letter-spacing:1px; text-align:center; line-height:1.25; color:var(--carbon); }
 
 /* STRIP */
@@ -60,7 +60,7 @@ nav.scrolled { padding:9px 60px; box-shadow:0 2px 20px rgba(0,0,0,0.06); }
 .section-label { font-family:"Cormorant Garamond",serif; font-style:italic; font-weight:300; font-size:16px; color:var(--brown); letter-spacing:3px; text-transform:uppercase; margin-bottom:14px; display:flex; align-items:center; gap:14px; }
 .section-label::before { content:''; display:inline-block; width:36px; height:1.5px; background:var(--gold); flex-shrink:0; }
 .section-h2 { font-family:"Bebas Neue",sans-serif; font-size:clamp(50px,6vw,88px); line-height:0.9; color:var(--carbon); }
-.section-h2 .outline { -webkit-text-stroke:2px var(--carbon); color:transparent; }
+.section-h2 .outline { color:var(--gold); -webkit-text-stroke:0; }
 
 /* TIENDA */
 #tienda { padding:108px 80px; }
@@ -97,7 +97,7 @@ nav.scrolled { padding:9px 60px; box-shadow:0 2px 20px rgba(0,0,0,0.06); }
 .benefits-header .section-label { color:rgba(249,195,1,0.7); }
 .benefits-header .section-label::before { background:rgba(249,195,1,0.5); }
 .benefits-header .section-h2 { color:var(--white); }
-.benefits-header .section-h2 .outline { -webkit-text-stroke-color:rgba(255,255,255,0.4); }
+.benefits-header .section-h2 .outline { color:rgba(249,195,1,0.55); }
 .benefits-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; }
 .benefit-item { padding:52px 48px; border:1px solid rgba(249,195,1,0.07); position:relative; transition:background 0.3s; }
 .benefit-item:hover { background:rgba(249,195,1,0.04); }
@@ -229,6 +229,21 @@ footer { background:var(--carbon); padding:64px 80px 40px; color:rgba(255,255,25
 @keyframes spin-slow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
 @keyframes pulse-wa { 0%,100%{box-shadow:0 8px 28px rgba(37,211,102,0.4)} 50%{box-shadow:0 8px 44px rgba(37,211,102,0.65)} }
 
+/* XL SCREENS */
+@media (min-width:1440px) {
+  nav { padding:16px 100px; }
+  nav.scrolled { padding:11px 100px; }
+  #home { grid-template-columns:50% 50%; min-height:100vh; }
+  .hero-left { padding:80px 64px 80px 100px; justify-content:center; }
+  .hero-h1 { font-size:clamp(100px,8vw,140px); }
+  .hero-cursive { font-size:clamp(40px,3.2vw,62px); }
+  .hero-sub { font-size:16px; max-width:460px; }
+  .hero-badge { bottom:60px; left:calc(50% - 46px); }
+  #tienda,#beneficios,.about-section { padding:120px 100px; }
+  .cta-section { padding:100px; }
+  footer { padding:80px 100px 48px; }
+}
+
 /* RESPONSIVE */
 @media (max-width:960px) {
   nav { padding:12px 24px; } .nav-links { display:none; }
@@ -280,8 +295,8 @@ footer { background:var(--carbon); padding:64px 80px 40px; color:rgba(255,255,25
   </div>
   <div class="hero-right">
     <img id="hero-img" src="" alt="Panal de Vida — Miel 100% Pura">
-    <div class="hero-badge"><span>100%<br>PURA<br>🍯</span></div>
   </div>
+  <div class="hero-badge"><span>100%<br>PURA<br>🍯</span></div>
 </section>
 
 <!-- MARQUEE -->
