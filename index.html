@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panal de Vida — Miel 100% Pura</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Montserrat:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #F9C301;
+  --gold-dark: #c99800;
+  --cream: #F7E7CE;
+  --cream-light: #fdf4e7;
+  --carbon: #2C2C2C;
+  --brown: #A0522D;
+  --white: #FFFFFF;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--cream-light); color: var(--carbon); font-family: "Montserrat", sans-serif; overflow-x: hidden; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 48px;
+  background: rgba(253,244,231,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(249,195,1,0.15);
+  transition: all 0.3s ease;
+}
+nav.scrolled { padding: 12px 48px; box-shadow: 0 4px 30px rgba(0,0,0,0.07); }
+.nav-logo { font-family: "Bebas Neue", sans-serif; font-size: 26px; color: var(--carbon); letter-spacing: 4px; text-decoration: none; }
+.nav-logo em { color: var(--gold); font-style: normal; }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: var(--carbon); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--gold-dark); }
+.nav-cart { background: var(--carbon); color: var(--gold); border: none; cursor: pointer; font-family: "Montserrat", sans-serif; font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 11px 22px; border-radius: 2px; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
+.nav-cart:hover { background: var(--gold); color: var(--carbon); }
+.cart-count { background: var(--gold); color: var(--carbon); border-radius: 50%; width: 20px; height: 20px; font-size: 10px; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; }
+.nav-cart:hover .cart-count { background: var(--carbon); color: var(--gold); }
+
+/* HERO */
+#home { min-height: 100vh; display: grid; grid-template-columns: 55% 45%; padding-top: 74px; }
+.hero-left { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px 80px 80px; position: relative; z-index: 2; }
+.hero-eyebrow { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 300; font-size: 14px; color: var(--brown); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 24px; opacity: 0; animation: fadeUp 0.7s 0.2s ease forwards; }
+.hero-h1 { font-family: "Bebas Neue", sans-serif; font-size: clamp(80px, 9vw, 130px); line-height: 0.88; color: var(--carbon); margin-bottom: 10px; opacity: 0; animation: fadeUp 0.7s 0.4s ease forwards; }
+.hero-h1 .gold { color: var(--gold); display: block; }
+.hero-cursive { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 300; font-size: clamp(38px, 4vw, 60px); color: var(--brown); line-height: 1.1; margin-bottom: 36px; opacity: 0; animation: fadeUp 0.7s 0.6s ease forwards; }
+.hero-sub { font-size: 13px; font-weight: 300; line-height: 1.9; color: var(--carbon); max-width: 420px; margin-bottom: 52px; opacity: 0; animation: fadeUp 0.7s 0.8s ease forwards; }
+.hero-btns { display: flex; gap: 16px; opacity: 0; animation: fadeUp 0.7s 1s ease forwards; }
+
+/* BUTTONS */
+.btn-primary { background: var(--carbon); color: var(--gold); padding: 16px 36px; border: none; cursor: pointer; font-family: "Montserrat", sans-serif; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; border-radius: 2px; text-decoration: none; display: inline-block; transition: all 0.25s; }
+.btn-primary:hover { background: var(--gold); color: var(--carbon); transform: translateY(-2px); }
+.btn-outline { background: transparent; color: var(--carbon); padding: 16px 36px; border: 2px solid var(--carbon); cursor: pointer; font-family: "Montserrat", sans-serif; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; border-radius: 2px; text-decoration: none; display: inline-block; transition: all 0.25s; }
+.btn-outline:hover { background: var(--carbon); color: var(--gold); }
+
+.hero-right { position: relative; overflow: hidden; opacity: 0; animation: fadeIn 1.2s 0.3s ease forwards; }
+.hero-right img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.hero-right::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, var(--cream-light) 0%, transparent 25%); }
+.hero-badge { position: absolute; bottom: 48px; left: -24px; z-index: 3; background: var(--gold); width: 110px; height: 110px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(249,195,1,0.45); animation: spin-slow 14s linear infinite; }
+.hero-badge span { font-family: "Bebas Neue", sans-serif; font-size: 14px; letter-spacing: 1px; text-align: center; line-height: 1.2; color: var(--carbon); }
+
+/* MARQUEE STRIP */
+.strip { background: var(--carbon); padding: 16px 0; overflow: hidden; }
+.strip-inner { display: flex; gap: 0; width: max-content; animation: marquee 22s linear infinite; }
+.strip-item { font-family: "Bebas Neue", sans-serif; font-size: 18px; letter-spacing: 5px; color: var(--gold); white-space: nowrap; flex-shrink: 0; padding: 0 40px; }
+.strip-dot { color: rgba(249,195,1,0.3); margin: 0 8px; }
+
+/* TIENDA */
+#tienda { padding: 120px 80px; }
+.section-label { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 300; font-size: 13px; color: var(--brown); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 14px; display: block; }
+.section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 80px; }
+.section-h2 { font-family: "Bebas Neue", sans-serif; font-size: clamp(56px, 7vw, 96px); line-height: 0.88; color: var(--carbon); }
+.section-h2 .outline { -webkit-text-stroke: 2.5px var(--carbon); color: transparent; }
+.section-sub { font-size: 12px; font-weight: 300; line-height: 1.9; color: var(--carbon); max-width: 240px; text-align: right; }
+
+/* CARDS */
+.products-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.product-card { position: relative; overflow: hidden; background: var(--cream); border-radius: 3px; cursor: pointer; transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.4s ease; }
+.product-card:hover { transform: translateY(-10px); box-shadow: 0 24px 60px rgba(44,44,44,0.12); }
+.product-card:hover .card-img img { transform: scale(1.07); }
+.card-img { position: relative; overflow: hidden; aspect-ratio: 2/3; }
+.card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
+.card-size-badge { position: absolute; top: 20px; left: 20px; background: var(--gold); color: var(--carbon); font-family: "Bebas Neue", sans-serif; font-size: 16px; letter-spacing: 2px; padding: 4px 14px; border-radius: 2px; }
+.card-body { padding: 28px 32px 32px; }
+.card-name { font-family: "Bebas Neue", sans-serif; font-size: 38px; letter-spacing: 2px; color: var(--carbon); line-height: 1; margin-bottom: 4px; }
+.card-sub { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 300; font-size: 15px; color: var(--brown); margin-bottom: 24px; }
+.card-footer { display: flex; align-items: center; justify-content: space-between; }
+.card-price { font-family: "Bebas Neue", sans-serif; font-size: 34px; color: var(--carbon); line-height: 1; }
+.card-price small { font-family: "Montserrat", sans-serif; font-size: 10px; font-weight: 300; color: var(--brown); display: block; }
+.card-btn { background: var(--carbon); color: var(--gold); border: none; cursor: pointer; font-family: "Montserrat", sans-serif; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; padding: 12px 20px; border-radius: 2px; transition: all 0.2s; }
+.card-btn:hover { background: var(--gold); color: var(--carbon); }
+
+/* GALLERY */
+.gallery-strip { display: grid; grid-template-columns: repeat(4, 1fr); height: 380px; overflow: hidden; }
+.gallery-strip-item { overflow: hidden; }
+.gallery-strip-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; display: block; }
+.gallery-strip-item:hover img { transform: scale(1.08); }
+
+/* BENEFITS */
+#beneficios { background: var(--carbon); padding: 120px 80px; position: relative; overflow: hidden; }
+#beneficios::before { content: "MIEL"; position: absolute; right: -60px; top: 50%; transform: translateY(-50%); font-family: "Bebas Neue", sans-serif; font-size: 280px; color: rgba(249,195,1,0.04); letter-spacing: 20px; pointer-events: none; white-space: nowrap; }
+.benefits-header { margin-bottom: 72px; }
+.benefits-header .section-label { color: rgba(249,195,1,0.6); }
+.benefits-header .section-h2 { color: var(--white); }
+.benefits-header .section-h2 .outline { -webkit-text-stroke-color: var(--white); }
+.benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+.benefit-item { background: rgba(255,255,255,0.025); border: 1px solid rgba(249,195,1,0.08); padding: 48px 30px; position: relative; overflow: hidden; transition: background 0.3s; }
+.benefit-item::after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease; }
+.benefit-item:hover { background: rgba(249,195,1,0.04); }
+.benefit-item:hover::after { transform: scaleX(1); }
+.benefit-icon { font-size: 32px; margin-bottom: 22px; display: block; }
+.benefit-title { font-family: "Bebas Neue", sans-serif; font-size: 20px; letter-spacing: 2px; color: var(--gold); margin-bottom: 14px; }
+.benefit-desc { font-size: 12px; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.55); }
+
+/* ABOUT */
+.about-section { padding: 120px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+.about-img { position: relative; }
+.about-img img { width: 100%; border-radius: 2px; box-shadow: 20px 20px 0 var(--gold); }
+.about-content .section-h2 { margin: 12px 0 32px; font-size: 68px; }
+.about-content p { font-size: 13px; font-weight: 300; line-height: 1.95; color: var(--carbon); margin-bottom: 18px; }
+.about-content em { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 16px; color: var(--brown); }
+
+/* CTA */
+.cta-section { background: var(--gold); padding: 80px; text-align: center; position: relative; overflow: hidden; }
+.cta-section::before { content: "🍯"; font-size: 180px; opacity: 0.1; position: absolute; right: 80px; top: 50%; transform: translateY(-50%); }
+.cta-h2 { font-family: "Bebas Neue", sans-serif; font-size: 76px; color: var(--carbon); margin-bottom: 8px; }
+.cta-sub { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 22px; font-weight: 300; color: var(--brown); margin-bottom: 44px; }
+
+/* FOOTER */
+footer { background: var(--carbon); padding: 64px 80px 40px; color: rgba(255,255,255,0.45); }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 64px; margin-bottom: 56px; }
+.footer-brand .nav-logo { color: var(--white); display: block; margin-bottom: 18px; }
+.footer-brand p { font-size: 12px; font-weight: 300; line-height: 1.85; max-width: 280px; }
+.footer-col h4 { font-family: "Bebas Neue", sans-serif; font-size: 17px; letter-spacing: 3px; color: var(--gold); margin-bottom: 20px; }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 10px; }
+.footer-col a { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+.footer-col a:hover { color: var(--gold); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 28px; display: flex; align-items: center; justify-content: space-between; font-size: 11px; }
+.footer-bottom a { color: var(--gold); text-decoration: none; }
+
+/* WHATSAPP */
+.wa-btn { position: fixed; bottom: 32px; right: 32px; z-index: 200; width: 62px; height: 62px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(37,211,102,0.4); text-decoration: none; transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); animation: pulse-wa 2.5s infinite; }
+.wa-btn:hover { transform: scale(1.12); }
+.wa-btn svg { width: 30px; height: 30px; fill: white; }
+.wa-tooltip { position: absolute; right: 74px; background: var(--carbon); color: white; font-size: 11px; font-weight: 600; padding: 6px 14px; border-radius: 20px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+.wa-btn:hover .wa-tooltip { opacity: 1; }
+
+/* CART DRAWER */
+.cart-overlay { position: fixed; inset: 0; z-index: 300; background: rgba(44,44,44,0.55); opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(4px); }
+.cart-overlay.open { opacity: 1; pointer-events: all; }
+.cart-drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 301; width: 420px; background: var(--cream-light); transform: translateX(100%); transition: transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94); display: flex; flex-direction: column; box-shadow: -8px 0 48px rgba(0,0,0,0.14); }
+.cart-drawer.open { transform: translateX(0); }
+.cart-header { padding: 32px; border-bottom: 1px solid rgba(44,44,44,0.08); display: flex; align-items: center; justify-content: space-between; }
+.cart-title { font-family: "Bebas Neue", sans-serif; font-size: 30px; letter-spacing: 3px; color: var(--carbon); }
+.cart-close { background: none; border: none; cursor: pointer; font-size: 22px; color: var(--carbon); line-height: 1; padding: 4px; }
+.cart-items { flex: 1; overflow-y: auto; padding: 20px 32px; }
+.cart-empty { text-align: center; padding: 80px 0; font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 18px; color: var(--brown); }
+.cart-item { display: grid; grid-template-columns: 76px 1fr auto; gap: 16px; align-items: center; padding: 18px 0; border-bottom: 1px solid rgba(44,44,44,0.07); }
+.cart-item-img { width: 76px; height: 76px; object-fit: cover; border-radius: 2px; }
+.cart-item-name { font-family: "Bebas Neue", sans-serif; font-size: 19px; letter-spacing: 1px; color: var(--carbon); }
+.cart-item-size { font-size: 10px; font-weight: 300; color: var(--brown); margin-top: 2px; }
+.cart-item-right { text-align: right; }
+.cart-item-price { font-family: "Bebas Neue", sans-serif; font-size: 20px; color: var(--carbon); }
+.cart-item-remove { background: none; border: none; cursor: pointer; color: var(--brown); font-size: 14px; opacity: 0.5; transition: opacity 0.2s; display: block; margin-top: 6px; margin-left: auto; }
+.cart-item-remove:hover { opacity: 1; }
+.cart-footer { padding: 28px 32px; border-top: 1px solid rgba(44,44,44,0.08); }
+.cart-total { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
+.cart-total-label { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 16px; color: var(--brown); }
+.cart-total-price { font-family: "Bebas Neue", sans-serif; font-size: 34px; color: var(--carbon); }
+.btn-checkout { width: 100%; background: var(--carbon); color: var(--gold); border: none; cursor: pointer; font-family: "Montserrat", sans-serif; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; padding: 18px; border-radius: 2px; transition: all 0.2s; }
+.btn-checkout:hover { background: var(--gold); color: var(--carbon); }
+
+/* PRODUCT PAGE */
+.product-page { position: fixed; inset: 0; z-index: 400; background: var(--cream-light); overflow-y: auto; transform: translateY(100%); transition: transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94); }
+.product-page.open { transform: translateY(0); }
+.product-page-inner { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
+.pp-images { position: sticky; top: 0; height: 100vh; overflow: hidden; background: var(--cream); }
+.pp-main-img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.35s ease; }
+.pp-thumbs { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
+.pp-thumb { width: 54px; height: 54px; object-fit: cover; border-radius: 2px; cursor: pointer; opacity: 0.55; border: 2px solid transparent; transition: all 0.2s; }
+.pp-thumb.active { opacity: 1; border-color: var(--gold); }
+.pp-back { position: absolute; top: 20px; left: 20px; background: rgba(253,244,231,0.9); backdrop-filter: blur(8px); border: none; cursor: pointer; font-family: "Montserrat", sans-serif; font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 10px 18px; border-radius: 2px; color: var(--carbon); transition: all 0.2s; }
+.pp-back:hover { background: var(--carbon); color: var(--gold); }
+.pp-content { padding: 72px 60px; display: flex; flex-direction: column; justify-content: center; }
+.pp-tag { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 13px; font-weight: 300; color: var(--brown); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 14px; }
+.pp-name { font-family: "Bebas Neue", sans-serif; font-size: 76px; line-height: 0.88; color: var(--carbon); margin-bottom: 6px; }
+.pp-volume { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 22px; font-weight: 300; color: var(--brown); margin-bottom: 28px; }
+.pp-price { font-family: "Bebas Neue", sans-serif; font-size: 52px; color: var(--carbon); line-height: 1; }
+.pp-price-sub { font-size: 10px; font-weight: 300; color: var(--brown); margin-bottom: 36px; margin-top: 4px; }
+.pp-desc { font-size: 13px; font-weight: 300; line-height: 1.9; color: var(--carbon); margin-bottom: 36px; border-left: 3px solid var(--gold); padding-left: 18px; }
+.pp-benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 44px; }
+.pp-benefit { display: flex; align-items: flex-start; gap: 8px; font-size: 11px; font-weight: 400; line-height: 1.6; color: var(--carbon); }
+.pp-benefit-icon { font-size: 15px; flex-shrink: 0; }
+.pp-actions { display: flex; gap: 12px; }
+.pp-add { flex: 1; background: var(--carbon); color: var(--gold); border: none; cursor: pointer; font-family: "Montserrat", sans-serif; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; padding: 18px; border-radius: 2px; transition: all 0.2s; }
+.pp-add:hover { background: var(--gold); color: var(--carbon); }
+.pp-wa { background: #25D366; color: white; border: none; cursor: pointer; padding: 18px 20px; border-radius: 2px; transition: all 0.2s; text-decoration: none; display: flex; align-items: center; justify-content: center; }
+.pp-wa:hover { background: #1da851; }
+.pp-wa svg { width: 22px; height: 22px; fill: white; }
+.pp-meta { margin-top: 36px; padding-top: 28px; border-top: 1px solid rgba(44,44,44,0.09); display: flex; gap: 36px; }
+.pp-meta-item { display: flex; flex-direction: column; gap: 4px; }
+.pp-meta-label { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: var(--brown); }
+.pp-meta-value { font-family: "Bebas Neue", sans-serif; font-size: 18px; color: var(--carbon); }
+
+/* WOMPI */
+.wompi-overlay { position: fixed; inset: 0; z-index: 500; background: rgba(44,44,44,0.75); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+.wompi-overlay.open { opacity: 1; pointer-events: all; }
+.wompi-modal { background: var(--cream-light); border-radius: 4px; padding: 48px; width: 480px; max-width: 92vw; box-shadow: 0 40px 80px rgba(0,0,0,0.3); transform: scale(0.9) translateY(20px); transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+.wompi-overlay.open .wompi-modal { transform: scale(1) translateY(0); }
+.wompi-title { font-family: "Bebas Neue", sans-serif; font-size: 38px; letter-spacing: 2px; color: var(--carbon); margin-bottom: 6px; }
+.wompi-sub { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 15px; color: var(--brown); margin-bottom: 32px; }
+.wompi-order { background: var(--cream); padding: 24px; border-radius: 2px; margin-bottom: 28px; }
+.wompi-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 10px; }
+.wompi-row:last-child { margin-bottom: 0; border-top: 1px solid rgba(0,0,0,0.08); padding-top: 12px; margin-top: 4px; }
+.wompi-total-val { font-family: "Bebas Neue", sans-serif; font-size: 26px; color: var(--carbon); }
+.wompi-note { font-size: 11px; font-weight: 300; color: var(--brown); margin-bottom: 20px; background: rgba(249,195,1,0.1); padding: 14px 16px; border-radius: 2px; border-left: 3px solid var(--gold); line-height: 1.7; }
+#wompi-container { margin-bottom: 20px; }
+.wompi-cancel { width: 100%; background: none; border: none; cursor: pointer; font-family: "Montserrat", sans-serif; font-size: 10px; font-weight: 700; color: var(--brown); text-transform: uppercase; letter-spacing: 2px; padding: 10px; transition: color 0.2s; }
+.wompi-cancel:hover { color: var(--carbon); }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.75s ease, transform 0.75s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes pulse-wa { 0%,100% { box-shadow: 0 8px 32px rgba(37,211,102,0.4); } 50% { box-shadow: 0 8px 48px rgba(37,211,102,0.7); } }
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  nav { padding: 14px 24px; }
+  .nav-links { display: none; }
+  #home { grid-template-columns: 1fr; }
+  .hero-right { height: 60vw; }
+  .hero-right::after { background: linear-gradient(to top, var(--cream-light) 0%, transparent 40%); }
+  .hero-left { padding: 48px 28px; }
+  #tienda, #beneficios, .about-section { padding: 80px 28px; }
+  .products-grid { grid-template-columns: 1fr; }
+  .benefits-grid { grid-template-columns: 1fr 1fr; }
+  .gallery-strip { grid-template-columns: 1fr 1fr; height: 320px; }
+  .about-section { grid-template-columns: 1fr; gap: 48px; }
+  .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .section-sub { text-align: left; max-width: 100%; }
+  .product-page-inner { grid-template-columns: 1fr; }
+  .pp-images { position: relative; height: 70vw; }
+  .pp-content { padding: 40px 28px; }
+  .pp-name { font-size: 52px; }
+  .cart-drawer { width: 100%; }
+  footer { padding: 56px 28px 36px; }
+  .footer-top { grid-template-columns: 1fr; gap: 36px; }
+  .cta-section { padding: 64px 28px; }
+  .cta-h2 { font-size: 52px; }
+}
+</style>
+</head>
+<body>
+
+<script src="images/imgs.js"></script>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">Panal <em>de</em> Vida</a>
+  <ul class="nav-links">
+    <li><a href="#home">Inicio</a></li>
+    <li><a href="#tienda">Tienda</a></li>
+    <li><a href="#beneficios">Beneficios</a></li>
+  </ul>
+  <button class="nav-cart" onclick="toggleCart()">
+    Carrito <span class="cart-count" id="cart-count">0</span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Distribuidores oficiales</p>
+    <h1 class="hero-h1">El Oro<span class="gold">Más</span>Dulce</h1>
+    <p class="hero-cursive">del planeta</p>
+    <p class="hero-sub">Miel de abejas 100% pura, directo del corazón del campo colombiano hasta tu mesa. Sin mezclas, sin artificios — solo naturaleza en estado puro.</p>
+    <div class="hero-btns">
+      <a href="#tienda" class="btn-primary">Ver productos</a>
+      <a href="https://wa.me/573163238623" target="_blank" class="btn-outline">Pedir por WhatsApp</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img id="hero-img" src="" alt="Panal de Vida — Miel 100% Pura">
+    <div class="hero-badge"><span>100%<br>PURA<br>🍯</span></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="strip">
+  <div class="strip-inner" id="strip-inner"></div>
+</div>
+
+<!-- TIENDA -->
+<section id="tienda">
+  <div class="section-header reveal">
+    <div>
+      <span class="section-label">Nuestra colección</span>
+      <h2 class="section-h2">Elige<br><span class="outline">Tu Miel</span></h2>
+    </div>
+    <p class="section-sub">Dos presentaciones para que el oro más dulce del planeta siempre esté a tu alcance.</p>
+  </div>
+  <div class="products-grid">
+    <div class="product-card reveal" onclick="openProduct('350')">
+      <div class="card-img">
+        <img id="card-img-350" src="" alt="Miel 350ml">
+        <span class="card-size-badge">350 ML</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-name">Miel Pura</h3>
+        <p class="card-sub">Presentación personal — perfecta para el día a día</p>
+        <div class="card-footer">
+          <div class="card-price">$25.000 <small>COP</small></div>
+          <button class="card-btn">Ver producto →</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card reveal" onclick="openProduct('750')">
+      <div class="card-img">
+        <img id="card-img-750" src="" alt="Miel 750ml">
+        <span class="card-size-badge">750 ML</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-name">Miel Pura</h3>
+        <p class="card-sub">Presentación familiar — más miel, más vida</p>
+        <div class="card-footer">
+          <div class="card-price">$50.000 <small>COP</small></div>
+          <button class="card-btn">Ver producto →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<div class="gallery-strip">
+  <div class="gallery-strip-item"><img id="gal-1" src="" alt=""></div>
+  <div class="gallery-strip-item"><img id="gal-2" src="" alt=""></div>
+  <div class="gallery-strip-item"><img id="gal-3" src="" alt=""></div>
+  <div class="gallery-strip-item"><img id="gal-4" src="" alt=""></div>
+</div>
+
+<!-- BENEFITS -->
+<section id="beneficios">
+  <div class="benefits-header reveal">
+    <span class="section-label">Por qué elegirnos</span>
+    <h2 class="section-h2">Pura. <span class="outline">Natural.</span><br>Poderosa.</h2>
+  </div>
+  <div class="benefits-grid">
+    <div class="benefit-item reveal">
+      <span class="benefit-icon">🛡️</span>
+      <h3 class="benefit-title">Refuerza tus defensas</h3>
+      <p class="benefit-desc">Rica en antioxidantes y propiedades antimicrobianas que fortalecen tu sistema inmune de forma completamente natural.</p>
+    </div>
+    <div class="benefit-item reveal">
+      <span class="benefit-icon">⚡</span>
+      <h3 class="benefit-title">Energía natural</h3>
+      <p class="benefit-desc">Fuente de carbohidratos naturales que proveen energía sostenida sin los picos glucémicos del azúcar refinada.</p>
+    </div>
+    <div class="benefit-item reveal">
+      <span class="benefit-icon">🌿</span>
+      <h3 class="benefit-title">100% sin procesar</h3>
+      <p class="benefit-desc">Sin conservantes, sin aditivos, sin mezclas. Lo que ves es exactamente lo que la naturaleza y las abejas produjeron.</p>
+    </div>
+    <div class="benefit-item reveal">
+      <span class="benefit-icon">💛</span>
+      <h3 class="benefit-title">Cuida tu piel</h3>
+      <p class="benefit-desc">Sus propiedades hidratantes, antibacterianas y cicatrizantes la convierten en aliada de tu salud por dentro y por fuera.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section">
+  <div class="about-img reveal">
+    <img id="about-img" src="" alt="Panal de Vida">
+  </div>
+  <div class="about-content reveal">
+    <span class="section-label">Nuestra historia</span>
+    <h2 class="section-h2">El Campo<br><span class="outline">Habla</span></h2>
+    <p>Somos <em>Colmieles</em>, distribuidores oficiales de Panal de Vida — miel de abejas 100% pura que viene directo del corazón del campo colombiano.</p>
+    <p>Cada frasco es el resultado del trabajo incansable de miles de abejas y de apicultores que cuidan la naturaleza con pasión y respeto. <em>Ninguna mezcla, ningún artificio.</em></p>
+    <p>Creemos que la miel es más que un alimento — es un regalo de la tierra, cargado de vida, energía y bienestar para ti y los tuyos.</p>
+    <a href="https://wa.me/573163238623" target="_blank" class="btn-primary" style="margin-top:20px">Hablar con nosotros</a>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section reveal">
+  <h2 class="cta-h2">¿Listo para probarla?</h2>
+  <p class="cta-sub">El oro más dulce del planeta te espera</p>
+  <a href="#tienda" class="btn-primary">Comprar ahora</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#home" class="nav-logo">Panal <em>de</em> Vida</a>
+      <p>Distribuidores oficiales del oro más dulce del planeta. Miel de abejas 100% pura, directo del campo colombiano.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Tienda</h4>
+      <ul>
+        <li><a href="javascript:void(0)" onclick="openProduct('350')">Miel 350ml — $25.000</a></li>
+        <li><a href="javascript:void(0)" onclick="openProduct('750')">Miel 750ml — $50.000</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="https://wa.me/573163238623" target="_blank">WhatsApp</a></li>
+        <li><a href="https://instagram.com/colmieles" target="_blank">@colmieles</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Panal de Vida · Colmieles · Todos los derechos reservados</span>
+    <a href="https://wa.me/573163238623" target="_blank">+57 316 323 8623</a>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/573163238623" target="_blank" class="wa-btn">
+  <span class="wa-tooltip">¡Escríbenos!</span>
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- CART -->
+<div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-header">
+    <h3 class="cart-title">Tu Carrito</h3>
+    <button class="cart-close" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <p class="cart-empty">Tu carrito está vacío</p>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span class="cart-total-label">Total a pagar</span>
+      <span class="cart-total-price" id="cart-total">$0</span>
+    </div>
+    <button class="btn-checkout" onclick="openWompi()">Pagar con Wompi →</button>
+  </div>
+</div>
+
+<!-- PRODUCT PAGE -->
+<div class="product-page" id="product-page">
+  <div class="product-page-inner">
+    <div class="pp-images">
+      <img id="pp-main-img" class="pp-main-img" src="" alt="">
+      <div class="pp-thumbs" id="pp-thumbs"></div>
+      <button class="pp-back" onclick="closeProduct()">← Volver</button>
+    </div>
+    <div class="pp-content">
+      <p class="pp-tag">Miel de Abejas · 100% Pura · Colombia</p>
+      <h1 class="pp-name" id="pp-name">Miel Pura</h1>
+      <p class="pp-volume" id="pp-volume">350 ml</p>
+      <p class="pp-price" id="pp-price">$25.000</p>
+      <p class="pp-price-sub">Precio en pesos colombianos (COP) · Envío a todo el país</p>
+      <p class="pp-desc" id="pp-desc">Miel de abejas 100% pura, cosechada con el mayor cuidado por apicultores colombianos. Sin procesar, sin mezclas, sin conservantes. Cada cucharada es naturaleza en su estado más puro.</p>
+      <div class="pp-benefits">
+        <div class="pp-benefit"><span class="pp-benefit-icon">🛡️</span><span>Refuerza el sistema inmune</span></div>
+        <div class="pp-benefit"><span class="pp-benefit-icon">⚡</span><span>Energía natural sostenida</span></div>
+        <div class="pp-benefit"><span class="pp-benefit-icon">🌿</span><span>Sin conservantes ni aditivos</span></div>
+        <div class="pp-benefit"><span class="pp-benefit-icon">💛</span><span>Propiedades cicatrizantes</span></div>
+        <div class="pp-benefit"><span class="pp-benefit-icon">🍯</span><span>Sabor artesanal auténtico</span></div>
+        <div class="pp-benefit"><span class="pp-benefit-icon">🌸</span><span>Rica en antioxidantes</span></div>
+      </div>
+      <div class="pp-actions">
+        <button class="pp-add" onclick="addCurrentToCart()">Agregar al carrito</button>
+        <a href="https://wa.me/573163238623" target="_blank" class="pp-wa" title="Pedir por WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+      </div>
+      <div class="pp-meta">
+        <div class="pp-meta-item"><span class="pp-meta-label">Contenido</span><span class="pp-meta-value" id="pp-meta-vol">350 ML</span></div>
+        <div class="pp-meta-item"><span class="pp-meta-label">Tipo</span><span class="pp-meta-value">100% Pura</span></div>
+        <div class="pp-meta-item"><span class="pp-meta-label">Origen</span><span class="pp-meta-value">Colombia</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WOMPI -->
+<div class="wompi-overlay" id="wompi-overlay">
+  <div class="wompi-modal">
+    <h2 class="wompi-title">Finalizar Pedido</h2>
+    <p class="wompi-sub">Pago seguro procesado por Wompi</p>
+    <div class="wompi-order" id="wompi-order"></div>
+    <div class="wompi-note">
+      💡 <strong>Para activar el pago real:</strong> reemplaza <code>pub_test_XXXX</code> con tu llave pública de Wompi y conecta tu Vercel Function <code>/api/firma</code> para generar la firma de integridad.
+    </div>
+    <div id="wompi-container"></div>
+    <button class="wompi-cancel" onclick="closeWompi()">Cancelar</button>
+  </div>
+</div>
+
+<script>
+// ===== INIT IMAGES =====
+// Assign images from IMGS object once DOM and IMGS are loaded
+window.addEventListener('load', () => {
+  if (typeof IMGS === 'undefined') { console.warn('IMGS not loaded'); return; }
+
+  // Hero
+  document.getElementById('hero-img').src = IMGS.hero;
+  // Cards
+  document.getElementById('card-img-350').src = IMGS.producto_350_1;
+  document.getElementById('card-img-750').src = IMGS.producto_750_1;
+  // Gallery
+  document.getElementById('gal-1').src = IMGS.ambos_2;
+  document.getElementById('gal-2').src = IMGS.lifestyle_hombre;
+  document.getElementById('gal-3').src = IMGS.lifestyle_mujer_1;
+  document.getElementById('gal-4').src = IMGS.ambos_3;
+  // About
+  document.getElementById('about-img').src = IMGS.lifestyle_mujer_2;
+
+  // Strip
+  const stripItems = ['Miel 100% Pura','Directo del Campo','Sin Conservantes','Artesanal','Colombia 🇨🇴','Colmieles','Miel 100% Pura','Directo del Campo','Sin Conservantes','Artesanal','Colombia 🇨🇴','Colmieles'];
+  const stripEl = document.getElementById('strip-inner');
+  stripEl.innerHTML = stripItems.map(t => `<span class="strip-item">${t}<span class="strip-dot"> ◆ </span></span>`).join('');
+});
+
+// ===== PRODUCTS DATA =====
+const PRODUCTS_DATA = {
+  '350': {
+    name: 'Miel Pura',
+    volume: '350 ml — Presentación personal',
+    price: 25000,
+    label: '$25.000',
+    getImgs: () => [IMGS.producto_350_1, IMGS.producto_350_2, IMGS.lifestyle_mujer_3]
+  },
+  '750': {
+    name: 'Miel Pura',
+    volume: '750 ml — Presentación familiar',
+    price: 50000,
+    label: '$50.000',
+    getImgs: () => [IMGS.producto_750_1, IMGS.producto_750_2, IMGS.lifestyle_hombre_2]
+  }
+};
+
+// ===== STATE =====
+let cart = [];
+let currentProduct = null;
+
+// ===== NAVBAR =====
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ===== SCROLL REVEAL =====
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+// ===== PRODUCT PAGE =====
+function openProduct(size) {
+  currentProduct = size;
+  const p = PRODUCTS_DATA[size];
+  const imgs = p.getImgs();
+
+  document.getElementById('pp-name').textContent = p.name;
+  document.getElementById('pp-volume').textContent = p.volume;
+  document.getElementById('pp-price').textContent = p.label;
+  document.getElementById('pp-meta-vol').textContent = size + ' ML';
+  document.getElementById('pp-main-img').src = imgs[0];
+
+  const thumbsEl = document.getElementById('pp-thumbs');
+  thumbsEl.innerHTML = imgs.map((src, i) =>
+    `<img class="pp-thumb${i===0?' active':''}" src="${src}" onclick="setThumb(${i})">`
+  ).join('');
+
+  document.getElementById('product-page').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProduct() {
+  document.getElementById('product-page').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function setThumb(i) {
+  if (!currentProduct) return;
+  const imgs = PRODUCTS_DATA[currentProduct].getImgs();
+  const mainImg = document.getElementById('pp-main-img');
+  mainImg.style.opacity = '0';
+  setTimeout(() => { mainImg.src = imgs[i]; mainImg.style.opacity = '1'; }, 200);
+  document.querySelectorAll('.pp-thumb').forEach((t, idx) => t.classList.toggle('active', idx===i));
+}
+
+function addCurrentToCart() {
+  if (!currentProduct) return;
+  const p = PRODUCTS_DATA[currentProduct];
+  const imgs = p.getImgs();
+  const existing = cart.find(i => i.size === currentProduct);
+  if (existing) { existing.qty++; }
+  else { cart.push({ size: currentProduct, name: p.name, price: p.price, label: p.label, img: imgs[0], qty: 1 }); }
+  updateCart();
+  closeProduct();
+  setTimeout(() => toggleCart(), 350);
+}
+
+// ===== CART =====
+function toggleCart() {
+  const overlay = document.getElementById('cart-overlay');
+  const drawer = document.getElementById('cart-drawer');
+  const open = drawer.classList.contains('open');
+  overlay.classList.toggle('open', !open);
+  drawer.classList.toggle('open', !open);
+  document.body.style.overflow = open ? '' : 'hidden';
+}
+
+function removeItem(idx) {
+  cart.splice(idx, 1);
+  updateCart();
+}
+
+function updateCart() {
+  const count = cart.reduce((s,i) => s+i.qty, 0);
+  const total = cart.reduce((s,i) => s+i.price*i.qty, 0);
+  document.getElementById('cart-count').textContent = count;
+  document.getElementById('cart-total').textContent = '$' + total.toLocaleString('es-CO');
+  const el = document.getElementById('cart-items');
+  if (!cart.length) { el.innerHTML = '<p class="cart-empty">Tu carrito está vacío 🍯</p>'; return; }
+  el.innerHTML = cart.map((item, idx) =>
+    `<div class="cart-item">
+      <img class="cart-item-img" src="${item.img}" alt="">
+      <div>
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-size">${item.size}ml × ${item.qty}</div>
+      </div>
+      <div class="cart-item-right">
+        <div class="cart-item-price">${item.label}</div>
+        <button class="cart-item-remove" onclick="removeItem(${idx})">✕</button>
+      </div>
+    </div>`
+  ).join('');
+}
+
+// ===== WOMPI =====
+function openWompi() {
+  if (!cart.length) return;
+  const total = cart.reduce((s,i) => s+i.price*i.qty, 0);
+  const ref = 'PDV-' + Date.now();
+
+  // Order summary
+  const orderEl = document.getElementById('wompi-order');
+  orderEl.innerHTML = cart.map(i =>
+    `<div class="wompi-row"><span>${i.name} ${i.size}ml × ${i.qty}</span><span>$${(i.price*i.qty).toLocaleString('es-CO')}</span></div>`
+  ).join('') +
+  `<div class="wompi-row"><span class="wompi-order-total-label">TOTAL</span><span class="wompi-total-val">$${total.toLocaleString('es-CO')}</span></div>`;
+
+  // Wompi widget
+  // ⚠️ REEMPLAZA estos valores con los de tu cuenta Wompi + Vercel Function
+  const container = document.getElementById('wompi-container');
+  container.innerHTML = '';
+  const script = document.createElement('script');
+  script.src = 'https://checkout.wompi.co/widget.js';
+  script.setAttribute('data-render', 'button');
+  script.setAttribute('data-public-key', 'pub_test_REEMPLAZA_CON_TU_LLAVE_PUBLICA');
+  script.setAttribute('data-currency', 'COP');
+  script.setAttribute('data-amount-in-cents', String(total * 100));
+  script.setAttribute('data-reference', ref);
+  script.setAttribute('data-signature:integrity', 'REEMPLAZA_CON_FIRMA_DE_TU_VERCEL_FUNCTION');
+  script.setAttribute('data-redirect-url', window.location.href);
+  container.appendChild(script);
+
+  toggleCart();
+  document.getElementById('wompi-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeWompi() {
+  document.getElementById('wompi-overlay').classList.remove('open');
+  document.getElementById('wompi-container').innerHTML = '';
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeProduct(); closeWompi(); }
+});
+</script>
+</body>
+</html>
