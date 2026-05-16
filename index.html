@@ -27,7 +27,7 @@ nav.scrolled { padding:9px 60px; box-shadow:0 2px 20px rgba(0,0,0,0.06); }
 .nav-cart:hover .cart-count { background:var(--carbon); color:var(--gold); }
 
 /* HERO */
-#home { min-height:100vh; display:grid; grid-template-columns:52% 48%; padding-top:68px; position:relative; }
+#home { height:100vh; display:grid; grid-template-columns:52% 48%; padding-top:68px; position:relative; overflow:hidden; }
 .hero-left { display:flex; flex-direction:column; justify-content:center; padding:60px 56px 60px 80px; position:relative; z-index:2; }
 .hero-left::before { content:''; position:absolute; inset:0; background-image:radial-gradient(rgba(249,195,1,0.2) 1.5px,transparent 1.5px); background-size:26px 26px; z-index:0; pointer-events:none; }
 .hero-eyebrow { font-family:"Cormorant Garamond",serif; font-style:italic; font-weight:300; font-size:17px; color:var(--brown); letter-spacing:3px; text-transform:uppercase; margin-bottom:22px; opacity:0; animation:fadeUp 0.7s 0.2s ease forwards; position:relative; z-index:1; display:flex; align-items:center; gap:16px; }
@@ -247,7 +247,7 @@ footer { background:var(--carbon); padding:64px 80px 40px; color:rgba(255,255,25
 /* RESPONSIVE */
 @media (max-width:960px) {
   nav { padding:12px 24px; } .nav-links { display:none; }
-  #home { grid-template-columns:1fr; }
+  #home { height:auto; min-height:100vh; grid-template-columns:1fr; overflow:visible; }
   .hero-right { height:55vw; } .hero-right::after { background:linear-gradient(to top,var(--cream-light) 0%,transparent 40%); }
   .hero-left { padding:40px 24px; }
   #tienda,#beneficios,.about-section { padding:72px 24px; }
