@@ -7,263 +7,245 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Montserrat:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --gold: #F9C301;
-  --gold-dark: #c99800;
-  --cream: #F7E7CE;
-  --cream-light: #fdf4e7;
-  --carbon: #2C2C2C;
-  --brown: #A0522D;
-  --white: #FFFFFF;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { background: var(--cream-light); color: var(--carbon); font-family: "Montserrat", sans-serif; overflow-x: hidden; }
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--cream); }
-::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+:root { --gold:#F9C301; --gold-dark:#c99800; --cream:#F7E7CE; --cream-light:#fdf4e7; --carbon:#2C2C2C; --brown:#A0522D; --white:#FFFFFF; }
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { background:var(--cream-light); color:var(--carbon); font-family:"Montserrat",sans-serif; overflow-x:hidden; }
+::-webkit-scrollbar { width:4px; } ::-webkit-scrollbar-track { background:var(--cream); } ::-webkit-scrollbar-thumb { background:var(--gold); border-radius:2px; }
 
 /* NAV */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 16px 56px;
-  background: rgba(253,244,231,0.96); backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(249,195,1,0.18);
-  transition: all 0.3s ease;
-}
-nav.scrolled { padding: 10px 56px; box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
-.nav-logo { display: flex; align-items: center; text-decoration: none; }
-.nav-logo img { height: 36px; width: auto; display: block; mix-blend-mode: multiply; }
-.nav-links { display: flex; gap: 40px; list-style: none; }
-.nav-links a { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--carbon); text-decoration: none; transition: color 0.2s; }
-.nav-links a:hover { color: var(--gold-dark); }
-.nav-cart { background: var(--carbon); color: var(--gold); border: none; cursor: pointer; font-family: "Montserrat", sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 11px 24px; border-radius: 2px; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
-.nav-cart:hover { background: var(--gold); color: var(--carbon); }
-.cart-count { background: var(--gold); color: var(--carbon); border-radius: 50%; width: 20px; height: 20px; font-size: 10px; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; }
-.nav-cart:hover .cart-count { background: var(--carbon); color: var(--gold); }
+nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:14px 60px; background:rgba(253,244,231,0.97); backdrop-filter:blur(16px); border-bottom:1px solid rgba(249,195,1,0.12); transition:all 0.3s ease; }
+nav.scrolled { padding:9px 60px; box-shadow:0 2px 20px rgba(0,0,0,0.06); }
+.nav-logo { display:flex; align-items:center; text-decoration:none; }
+.nav-logo img { height:34px; width:auto; display:block; mix-blend-mode:multiply; }
+.nav-links { display:flex; gap:48px; list-style:none; }
+.nav-links a { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:3px; color:var(--carbon); text-decoration:none; transition:color 0.2s; }
+.nav-links a:hover { color:var(--gold-dark); }
+.nav-cart { background:var(--carbon); color:var(--gold); border:none; cursor:pointer; font-family:"Montserrat",sans-serif; font-size:10px; font-weight:900; letter-spacing:2.5px; text-transform:uppercase; padding:12px 26px; border-radius:2px; transition:all 0.2s; display:flex; align-items:center; gap:8px; }
+.nav-cart:hover { background:var(--gold); color:var(--carbon); }
+.cart-count { background:var(--gold); color:var(--carbon); border-radius:50%; width:20px; height:20px; font-size:10px; font-weight:900; display:inline-flex; align-items:center; justify-content:center; }
+.nav-cart:hover .cart-count { background:var(--carbon); color:var(--gold); }
 
 /* HERO */
-#home { min-height: 100vh; display: grid; grid-template-columns: 50% 50%; padding-top: 68px; }
-.hero-left { display: flex; flex-direction: column; justify-content: center; padding: 56px 52px 56px 80px; position: relative; z-index: 2; }
-.hero-eyebrow { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 300; font-size: 17px; color: var(--brown); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.7s 0.2s ease forwards; }
-.hero-h1 { font-family: "Bebas Neue", sans-serif; font-size: clamp(66px, 7.5vw, 112px); line-height: 0.9; color: var(--carbon); margin-bottom: 8px; opacity: 0; animation: fadeUp 0.7s 0.4s ease forwards; }
-.hero-h1 .gold { color: var(--gold); display: block; }
-.hero-cursive { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 300; font-size: clamp(30px, 3.2vw, 50px); color: var(--brown); line-height: 1.1; margin-bottom: 28px; opacity: 0; animation: fadeUp 0.7s 0.6s ease forwards; }
-.hero-sub { font-size: 15px; font-weight: 300; line-height: 1.85; color: var(--carbon); max-width: 400px; margin-bottom: 44px; opacity: 0; animation: fadeUp 0.7s 0.8s ease forwards; }
-.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.7s 1s ease forwards; }
+#home { min-height:100vh; display:grid; grid-template-columns:52% 48%; padding-top:68px; }
+.hero-left { display:flex; flex-direction:column; justify-content:center; padding:60px 56px 60px 80px; position:relative; z-index:2; overflow:hidden; }
+.hero-left::before { content:''; position:absolute; inset:0; background-image:radial-gradient(rgba(249,195,1,0.2) 1.5px,transparent 1.5px); background-size:26px 26px; z-index:0; pointer-events:none; }
+.hero-eyebrow { font-family:"Cormorant Garamond",serif; font-style:italic; font-weight:300; font-size:17px; color:var(--brown); letter-spacing:3px; text-transform:uppercase; margin-bottom:22px; opacity:0; animation:fadeUp 0.7s 0.2s ease forwards; position:relative; z-index:1; display:flex; align-items:center; gap:16px; }
+.hero-eyebrow::before { content:''; display:inline-block; width:40px; height:1.5px; background:var(--gold); flex-shrink:0; }
+.hero-h1 { font-family:"Bebas Neue",sans-serif; font-size:clamp(70px,8.5vw,124px); line-height:0.87; color:var(--carbon); margin-bottom:6px; opacity:0; animation:fadeUp 0.7s 0.4s ease forwards; position:relative; z-index:1; }
+.hero-h1 .gold { color:var(--gold); display:block; }
+.hero-cursive { font-family:"Cormorant Garamond",serif; font-style:italic; font-weight:300; font-size:clamp(32px,3.6vw,54px); color:var(--brown); line-height:1.1; margin-bottom:30px; opacity:0; animation:fadeUp 0.7s 0.6s ease forwards; position:relative; z-index:1; }
+.hero-sub { font-size:15px; font-weight:300; line-height:1.9; color:rgba(44,44,44,0.72); max-width:400px; margin-bottom:48px; opacity:0; animation:fadeUp 0.7s 0.8s ease forwards; position:relative; z-index:1; }
+.hero-btns { display:flex; gap:14px; flex-wrap:wrap; opacity:0; animation:fadeUp 0.7s 1s ease forwards; position:relative; z-index:1; }
 
 /* BUTTONS */
-.btn-primary { background: var(--carbon); color: var(--gold); padding: 15px 34px; border: none; cursor: pointer; font-family: "Montserrat", sans-serif; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 2.5px; border-radius: 2px; text-decoration: none; display: inline-block; transition: all 0.25s; }
-.btn-primary:hover { background: var(--gold); color: var(--carbon); transform: translateY(-2px); }
-.btn-outline { background: transparent; color: var(--carbon); padding: 15px 34px; border: 2px solid var(--carbon); cursor: pointer; font-family: "Montserrat", sans-serif; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 2.5px; border-radius: 2px; text-decoration: none; display: inline-block; transition: all 0.25s; }
-.btn-outline:hover { background: var(--carbon); color: var(--gold); }
+.btn-primary { background:var(--carbon); color:var(--gold); padding:16px 36px; border:none; cursor:pointer; font-family:"Montserrat",sans-serif; font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:2.5px; border-radius:2px; text-decoration:none; display:inline-block; transition:all 0.25s; }
+.btn-primary:hover { background:var(--gold); color:var(--carbon); transform:translateY(-2px); box-shadow:0 10px 28px rgba(249,195,1,0.35); }
+.btn-outline { background:transparent; color:var(--carbon); padding:16px 36px; border:1.5px solid rgba(44,44,44,0.5); cursor:pointer; font-family:"Montserrat",sans-serif; font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:2.5px; border-radius:2px; text-decoration:none; display:inline-block; transition:all 0.25s; }
+.btn-outline:hover { background:var(--carbon); color:var(--gold); border-color:var(--carbon); }
 
-.hero-right { position: relative; overflow: hidden; opacity: 0; animation: fadeIn 1.2s 0.3s ease forwards; }
-.hero-right img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-.hero-right::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, var(--cream-light) 0%, transparent 35%); }
-.hero-badge { position: absolute; bottom: 40px; left: -18px; z-index: 3; background: var(--gold); width: 96px; height: 96px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 8px 28px rgba(249,195,1,0.45); animation: spin-slow 14s linear infinite; }
-.hero-badge span { font-family: "Bebas Neue", sans-serif; font-size: 13px; letter-spacing: 1px; text-align: center; line-height: 1.2; color: var(--carbon); }
+.hero-right { position:relative; overflow:hidden; opacity:0; animation:fadeIn 1.2s 0.3s ease forwards; }
+.hero-right img { width:100%; height:100%; object-fit:cover; object-position:center top; }
+.hero-right::after { content:""; position:absolute; inset:0; background:linear-gradient(to right,var(--cream-light) 0%,transparent 30%); }
+.hero-badge { position:absolute; bottom:44px; left:-16px; z-index:3; background:var(--gold); width:92px; height:92px; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 8px 32px rgba(249,195,1,0.5); animation:spin-slow 14s linear infinite; }
+.hero-badge span { font-family:"Bebas Neue",sans-serif; font-size:12px; letter-spacing:1px; text-align:center; line-height:1.25; color:var(--carbon); }
 
-/* MARQUEE STRIP */
-.strip { background: var(--carbon); padding: 13px 0; overflow: hidden; }
-.strip-inner { display: flex; gap: 0; width: max-content; animation: marquee 22s linear infinite; }
-.strip-item { font-family: "Bebas Neue", sans-serif; font-size: 15px; letter-spacing: 5px; color: var(--gold); white-space: nowrap; flex-shrink: 0; padding: 0 36px; }
-.strip-dot { color: rgba(249,195,1,0.3); margin: 0 8px; }
+/* STRIP */
+.strip { background:var(--carbon); padding:14px 0; overflow:hidden; }
+.strip-inner { display:flex; width:max-content; animation:marquee 20s linear infinite; }
+.strip-item { font-family:"Bebas Neue",sans-serif; font-size:15px; letter-spacing:6px; color:var(--gold); white-space:nowrap; flex-shrink:0; padding:0 44px; }
+.strip-dot { color:rgba(249,195,1,0.2); }
 
-/* SHARED SECTION STYLES */
-.section-label { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 300; font-size: 16px; color: var(--brown); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; display: block; }
-.section-h2 { font-family: "Bebas Neue", sans-serif; font-size: clamp(46px, 5.5vw, 80px); line-height: 0.92; color: var(--carbon); }
-.section-h2 .outline { -webkit-text-stroke: 2px var(--carbon); color: transparent; }
-.section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 56px; gap: 40px; }
-.section-sub { font-size: 14px; font-weight: 300; line-height: 1.8; color: var(--carbon); max-width: 300px; text-align: right; flex-shrink: 0; opacity: 0.75; }
+/* SECTION SHARED */
+.section-label { font-family:"Cormorant Garamond",serif; font-style:italic; font-weight:300; font-size:16px; color:var(--brown); letter-spacing:3px; text-transform:uppercase; margin-bottom:14px; display:flex; align-items:center; gap:14px; }
+.section-label::before { content:''; display:inline-block; width:36px; height:1.5px; background:var(--gold); flex-shrink:0; }
+.section-h2 { font-family:"Bebas Neue",sans-serif; font-size:clamp(50px,6vw,88px); line-height:0.9; color:var(--carbon); }
+.section-h2 .outline { -webkit-text-stroke:2px var(--carbon); color:transparent; }
 
 /* TIENDA */
-#tienda { padding: 96px 80px; }
+#tienda { padding:108px 80px; }
+.tienda-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:56px; gap:40px; }
+.section-sub { font-size:14px; font-weight:300; line-height:1.85; color:rgba(44,44,44,0.6); max-width:260px; text-align:right; flex-shrink:0; }
 
-/* CARDS */
-.products-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.product-card { position: relative; overflow: hidden; background: var(--cream); border-radius: 3px; cursor: pointer; transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.4s ease; }
-.product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 52px rgba(44,44,44,0.11); }
-.product-card:hover .card-img img { transform: scale(1.05); }
-.card-img { position: relative; overflow: hidden; aspect-ratio: 3/4; }
-.card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
-.card-size-badge { position: absolute; top: 18px; left: 18px; background: var(--gold); color: var(--carbon); font-family: "Bebas Neue", sans-serif; font-size: 15px; letter-spacing: 2px; padding: 4px 13px; border-radius: 2px; }
-.card-body { padding: 24px 28px 28px; }
-.card-name { font-family: "Bebas Neue", sans-serif; font-size: 36px; letter-spacing: 2px; color: var(--carbon); line-height: 1; margin-bottom: 5px; }
-.card-sub { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 300; font-size: 16px; color: var(--brown); margin-bottom: 20px; }
-.card-footer { display: flex; align-items: center; justify-content: space-between; }
-.card-price { font-family: "Bebas Neue", sans-serif; font-size: 32px; color: var(--carbon); line-height: 1; }
-.card-price small { font-family: "Montserrat", sans-serif; font-size: 11px; font-weight: 300; color: var(--brown); display: block; }
-.card-btn { background: var(--carbon); color: var(--gold); border: none; cursor: pointer; font-family: "Montserrat", sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; padding: 12px 20px; border-radius: 2px; transition: all 0.2s; }
-.card-btn:hover { background: var(--gold); color: var(--carbon); }
+/* CARDS — OVERLAY STYLE */
+.products-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.product-card { position:relative; overflow:hidden; border-radius:4px; cursor:pointer; height:540px; background:var(--carbon); transition:transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94),box-shadow 0.45s ease; }
+.product-card:hover { transform:translateY(-10px); box-shadow:0 32px 80px rgba(44,44,44,0.25); }
+.card-img { position:absolute; inset:0; overflow:hidden; }
+.card-img img { width:100%; height:100%; object-fit:cover; object-position:center; transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); display:block; }
+.product-card:hover .card-img img { transform:scale(1.08); }
+.card-size-badge { position:absolute; top:22px; right:22px; z-index:3; background:var(--gold); color:var(--carbon); font-family:"Bebas Neue",sans-serif; font-size:14px; letter-spacing:2px; padding:5px 14px; border-radius:2px; }
+.card-body { position:absolute; bottom:0; left:0; right:0; z-index:2; background:linear-gradient(to top,rgba(16,10,2,0.97) 0%,rgba(16,10,2,0.75) 55%,transparent 100%); padding:64px 28px 28px; }
+.card-name { font-family:"Bebas Neue",sans-serif; font-size:46px; letter-spacing:2px; color:var(--white); line-height:1; margin-bottom:4px; }
+.card-sub { font-family:"Cormorant Garamond",serif; font-style:italic; font-weight:300; font-size:16px; color:rgba(255,255,255,0.55); margin-bottom:22px; }
+.card-footer { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.card-price { font-family:"Bebas Neue",sans-serif; font-size:40px; color:var(--gold); line-height:1; }
+.card-price small { font-family:"Montserrat",sans-serif; font-size:10px; font-weight:300; color:rgba(255,255,255,0.35); display:block; }
+.card-btn { background:var(--gold); color:var(--carbon); border:none; cursor:pointer; font-family:"Montserrat",sans-serif; font-size:10px; font-weight:900; text-transform:uppercase; letter-spacing:2px; padding:13px 22px; border-radius:2px; transition:all 0.2s; white-space:nowrap; }
+.card-btn:hover { background:var(--white); }
 
 /* GALLERY */
-.gallery-strip { display: grid; grid-template-columns: repeat(4, 1fr); height: 260px; overflow: hidden; }
-.gallery-strip-item { overflow: hidden; }
-.gallery-strip-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; display: block; }
-.gallery-strip-item:hover img { transform: scale(1.07); }
+.gallery-strip { display:grid; grid-template-columns:repeat(4,1fr); height:260px; overflow:hidden; }
+.gallery-strip-item { overflow:hidden; }
+.gallery-strip-item img { width:100%; height:100%; object-fit:cover; transition:transform 0.7s ease; display:block; }
+.gallery-strip-item:hover img { transform:scale(1.09); }
 
-/* BENEFITS */
-#beneficios { background: var(--carbon); padding: 96px 80px; position: relative; overflow: hidden; }
-#beneficios::before { content: "MIEL"; position: absolute; right: -40px; top: 50%; transform: translateY(-50%); font-family: "Bebas Neue", sans-serif; font-size: 220px; color: rgba(249,195,1,0.04); letter-spacing: 20px; pointer-events: none; white-space: nowrap; }
-.benefits-header { margin-bottom: 52px; }
-.benefits-header .section-label { color: rgba(249,195,1,0.65); }
-.benefits-header .section-h2 { color: var(--white); }
-.benefits-header .section-h2 .outline { -webkit-text-stroke-color: var(--white); }
-.benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
-.benefit-item { background: rgba(255,255,255,0.025); border: 1px solid rgba(249,195,1,0.08); padding: 40px 28px; position: relative; overflow: hidden; transition: background 0.3s; }
-.benefit-item::after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease; }
-.benefit-item:hover { background: rgba(249,195,1,0.04); }
-.benefit-item:hover::after { transform: scaleX(1); }
-.benefit-icon { font-size: 28px; margin-bottom: 18px; display: block; }
-.benefit-title { font-family: "Bebas Neue", sans-serif; font-size: 22px; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 12px; }
-.benefit-desc { font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.6); }
+/* BENEFITS — NUMBERED 2×2 */
+#beneficios { background:var(--carbon); padding:108px 80px; position:relative; overflow:hidden; }
+#beneficios::before { content:"MIEL"; position:absolute; right:-30px; bottom:-40px; font-family:"Bebas Neue",sans-serif; font-size:280px; color:rgba(249,195,1,0.03); letter-spacing:20px; pointer-events:none; white-space:nowrap; line-height:1; }
+.benefits-header { margin-bottom:56px; }
+.benefits-header .section-label { color:rgba(249,195,1,0.7); }
+.benefits-header .section-label::before { background:rgba(249,195,1,0.5); }
+.benefits-header .section-h2 { color:var(--white); }
+.benefits-header .section-h2 .outline { -webkit-text-stroke-color:rgba(255,255,255,0.4); }
+.benefits-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+.benefit-item { padding:52px 48px; border:1px solid rgba(249,195,1,0.07); position:relative; transition:background 0.3s; }
+.benefit-item:hover { background:rgba(249,195,1,0.04); }
+.benefit-num { font-family:"Bebas Neue",sans-serif; font-size:96px; color:rgba(249,195,1,0.1); line-height:1; display:block; margin-bottom:6px; letter-spacing:2px; transition:color 0.3s; }
+.benefit-item:hover .benefit-num { color:rgba(249,195,1,0.2); }
+.benefit-icon { font-size:26px; margin-bottom:14px; display:block; }
+.benefit-title { font-family:"Bebas Neue",sans-serif; font-size:26px; letter-spacing:1.5px; color:var(--gold); margin-bottom:12px; }
+.benefit-desc { font-size:14px; font-weight:300; line-height:1.85; color:rgba(255,255,255,0.55); max-width:300px; }
 
 /* ABOUT */
-.about-section { padding: 96px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
-.about-img { position: relative; }
-.about-img img { width: 100%; border-radius: 2px; box-shadow: 14px 14px 0 var(--gold); }
-.about-content .section-h2 { margin: 10px 0 26px; }
-.about-content p { font-size: 15px; font-weight: 300; line-height: 1.9; color: var(--carbon); margin-bottom: 16px; }
-.about-content em { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 17px; color: var(--brown); }
+.about-section { padding:108px 80px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; position:relative; }
+.about-section::after { content:''; position:absolute; left:50%; top:50%; transform:translate(-20%,-50%); width:500px; height:500px; border-radius:50%; background:radial-gradient(circle,rgba(249,195,1,0.05) 0%,transparent 70%); pointer-events:none; z-index:0; }
+.about-img { position:relative; z-index:1; }
+.about-img img { width:100%; display:block; border-radius:3px; }
+.about-img::after { content:''; position:absolute; inset:18px -18px -18px 18px; border:2px solid rgba(249,195,1,0.6); border-radius:3px; z-index:-1; }
+.about-content { position:relative; z-index:1; }
+.about-content .section-h2 { margin:10px 0 28px; }
+.about-content p { font-size:15px; font-weight:300; line-height:1.95; color:rgba(44,44,44,0.8); margin-bottom:16px; }
+.about-content em { font-family:"Cormorant Garamond",serif; font-style:italic; font-size:18px; color:var(--brown); }
 
 /* CTA */
-.cta-section { background: var(--gold); padding: 72px 80px; text-align: center; position: relative; overflow: hidden; }
-.cta-section::before { content: "🍯"; font-size: 150px; opacity: 0.1; position: absolute; right: 80px; top: 50%; transform: translateY(-50%); }
-.cta-h2 { font-family: "Bebas Neue", sans-serif; font-size: 68px; color: var(--carbon); margin-bottom: 8px; }
-.cta-sub { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 22px; font-weight: 300; color: var(--brown); margin-bottom: 40px; }
+.cta-section { background:var(--gold); padding:80px; text-align:center; position:relative; overflow:hidden; }
+.cta-section::before { content:''; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,0.35) 1.5px,transparent 1.5px); background-size:22px 22px; pointer-events:none; }
+.cta-h2 { font-family:"Bebas Neue",sans-serif; font-size:76px; color:var(--carbon); margin-bottom:8px; position:relative; }
+.cta-sub { font-family:"Cormorant Garamond",serif; font-style:italic; font-size:24px; font-weight:300; color:var(--brown); margin-bottom:44px; position:relative; }
 
 /* FOOTER */
-footer { background: var(--carbon); padding: 56px 80px 36px; color: rgba(255,255,255,0.5); }
-.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 56px; margin-bottom: 44px; }
-.footer-brand .nav-logo { display: block; margin-bottom: 16px; }
-.footer-brand .nav-logo img { mix-blend-mode: normal; }
-.footer-brand p { font-size: 13px; font-weight: 300; line-height: 1.85; max-width: 280px; }
-.footer-col h4 { font-family: "Bebas Neue", sans-serif; font-size: 18px; letter-spacing: 3px; color: var(--gold); margin-bottom: 18px; }
-.footer-col ul { list-style: none; }
-.footer-col li { margin-bottom: 10px; }
-.footer-col a { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
-.footer-col a:hover { color: var(--gold); }
-.footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; }
-.footer-bottom a { color: var(--gold); text-decoration: none; }
+footer { background:var(--carbon); padding:64px 80px 40px; color:rgba(255,255,255,0.5); }
+.footer-top { display:grid; grid-template-columns:2fr 1fr 1fr; gap:60px; margin-bottom:48px; }
+.footer-brand .nav-logo { display:block; margin-bottom:18px; }
+.footer-brand .nav-logo img { mix-blend-mode:normal; height:38px; width:auto; }
+.footer-brand p { font-size:13px; font-weight:300; line-height:1.9; max-width:270px; }
+.footer-col h4 { font-family:"Bebas Neue",sans-serif; font-size:18px; letter-spacing:3px; color:var(--gold); margin-bottom:20px; }
+.footer-col ul { list-style:none; }
+.footer-col li { margin-bottom:11px; }
+.footer-col a { font-size:13px; font-weight:300; color:rgba(255,255,255,0.5); text-decoration:none; transition:color 0.2s; }
+.footer-col a:hover { color:var(--gold); }
+.footer-bottom { border-top:1px solid rgba(255,255,255,0.06); padding-top:24px; display:flex; align-items:center; justify-content:space-between; font-size:12px; }
+.footer-bottom a { color:var(--gold); text-decoration:none; }
 
 /* WHATSAPP */
-.wa-btn { position: fixed; bottom: 32px; right: 32px; z-index: 200; width: 60px; height: 60px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 28px rgba(37,211,102,0.4); text-decoration: none; transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); animation: pulse-wa 2.5s infinite; }
-.wa-btn:hover { transform: scale(1.12); }
-.wa-btn svg { width: 28px; height: 28px; fill: white; }
-.wa-tooltip { position: absolute; right: 72px; background: var(--carbon); color: white; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
-.wa-btn:hover .wa-tooltip { opacity: 1; }
+.wa-btn { position:fixed; bottom:32px; right:32px; z-index:200; width:60px; height:60px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 28px rgba(37,211,102,0.4); text-decoration:none; transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1); animation:pulse-wa 2.5s infinite; }
+.wa-btn:hover { transform:scale(1.12); }
+.wa-btn svg { width:28px; height:28px; fill:white; }
+.wa-tooltip { position:absolute; right:72px; background:var(--carbon); color:white; font-size:12px; font-weight:600; padding:6px 14px; border-radius:20px; white-space:nowrap; opacity:0; pointer-events:none; transition:opacity 0.2s; }
+.wa-btn:hover .wa-tooltip { opacity:1; }
 
-/* CART DRAWER */
-.cart-overlay { position: fixed; inset: 0; z-index: 300; background: rgba(44,44,44,0.55); opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(4px); }
-.cart-overlay.open { opacity: 1; pointer-events: all; }
-.cart-drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 301; width: 420px; background: var(--cream-light); transform: translateX(100%); transition: transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94); display: flex; flex-direction: column; box-shadow: -8px 0 48px rgba(0,0,0,0.14); }
-.cart-drawer.open { transform: translateX(0); }
-.cart-header { padding: 28px 32px; border-bottom: 1px solid rgba(44,44,44,0.08); display: flex; align-items: center; justify-content: space-between; }
-.cart-title { font-family: "Bebas Neue", sans-serif; font-size: 28px; letter-spacing: 3px; color: var(--carbon); }
-.cart-close { background: none; border: none; cursor: pointer; font-size: 20px; color: var(--carbon); line-height: 1; padding: 4px; }
-.cart-items { flex: 1; overflow-y: auto; padding: 16px 32px; }
-.cart-empty { text-align: center; padding: 64px 0; font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 18px; color: var(--brown); }
-.cart-item { display: grid; grid-template-columns: 72px 1fr auto; gap: 14px; align-items: center; padding: 16px 0; border-bottom: 1px solid rgba(44,44,44,0.07); }
-.cart-item-img { width: 72px; height: 72px; object-fit: cover; border-radius: 2px; }
-.cart-item-name { font-family: "Bebas Neue", sans-serif; font-size: 19px; letter-spacing: 1px; color: var(--carbon); }
-.cart-item-size { font-size: 12px; font-weight: 300; color: var(--brown); margin-top: 2px; }
-.cart-item-right { text-align: right; }
-.cart-item-price { font-family: "Bebas Neue", sans-serif; font-size: 20px; color: var(--carbon); }
-.cart-item-remove { background: none; border: none; cursor: pointer; color: var(--brown); font-size: 13px; opacity: 0.5; transition: opacity 0.2s; display: block; margin-top: 6px; margin-left: auto; }
-.cart-item-remove:hover { opacity: 1; }
-.cart-footer { padding: 24px 32px; border-top: 1px solid rgba(44,44,44,0.08); }
-.cart-total { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.cart-total-label { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 17px; color: var(--brown); }
-.cart-total-price { font-family: "Bebas Neue", sans-serif; font-size: 34px; color: var(--carbon); }
-.btn-checkout { width: 100%; background: var(--carbon); color: var(--gold); border: none; cursor: pointer; font-family: "Montserrat", sans-serif; font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; padding: 18px; border-radius: 2px; transition: all 0.2s; }
-.btn-checkout:hover { background: var(--gold); color: var(--carbon); }
+/* CART */
+.cart-overlay { position:fixed; inset:0; z-index:300; background:rgba(44,44,44,0.55); opacity:0; pointer-events:none; transition:opacity 0.3s; backdrop-filter:blur(4px); }
+.cart-overlay.open { opacity:1; pointer-events:all; }
+.cart-drawer { position:fixed; top:0; right:0; bottom:0; z-index:301; width:420px; background:var(--cream-light); transform:translateX(100%); transition:transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94); display:flex; flex-direction:column; box-shadow:-8px 0 48px rgba(0,0,0,0.14); }
+.cart-drawer.open { transform:translateX(0); }
+.cart-header { padding:28px 32px; border-bottom:1px solid rgba(44,44,44,0.08); display:flex; align-items:center; justify-content:space-between; }
+.cart-title { font-family:"Bebas Neue",sans-serif; font-size:28px; letter-spacing:3px; color:var(--carbon); }
+.cart-close { background:none; border:none; cursor:pointer; font-size:20px; color:var(--carbon); line-height:1; padding:4px; }
+.cart-items { flex:1; overflow-y:auto; padding:16px 32px; }
+.cart-empty { text-align:center; padding:64px 0; font-family:"Cormorant Garamond",serif; font-style:italic; font-size:18px; color:var(--brown); }
+.cart-item { display:grid; grid-template-columns:72px 1fr auto; gap:14px; align-items:center; padding:16px 0; border-bottom:1px solid rgba(44,44,44,0.07); }
+.cart-item-img { width:72px; height:72px; object-fit:cover; border-radius:2px; }
+.cart-item-name { font-family:"Bebas Neue",sans-serif; font-size:19px; letter-spacing:1px; color:var(--carbon); }
+.cart-item-size { font-size:12px; font-weight:300; color:var(--brown); margin-top:2px; }
+.cart-item-right { text-align:right; }
+.cart-item-price { font-family:"Bebas Neue",sans-serif; font-size:20px; color:var(--carbon); }
+.cart-item-remove { background:none; border:none; cursor:pointer; color:var(--brown); font-size:13px; opacity:0.5; transition:opacity 0.2s; display:block; margin-top:6px; margin-left:auto; }
+.cart-item-remove:hover { opacity:1; }
+.cart-footer { padding:24px 32px; border-top:1px solid rgba(44,44,44,0.08); }
+.cart-total { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+.cart-total-label { font-family:"Cormorant Garamond",serif; font-style:italic; font-size:17px; color:var(--brown); }
+.cart-total-price { font-family:"Bebas Neue",sans-serif; font-size:34px; color:var(--carbon); }
+.btn-checkout { width:100%; background:var(--carbon); color:var(--gold); border:none; cursor:pointer; font-family:"Montserrat",sans-serif; font-size:12px; font-weight:900; text-transform:uppercase; letter-spacing:3px; padding:18px; border-radius:2px; transition:all 0.2s; }
+.btn-checkout:hover { background:var(--gold); color:var(--carbon); }
 
 /* PRODUCT PAGE */
-.product-page { position: fixed; inset: 0; z-index: 400; background: var(--cream-light); overflow-y: auto; transform: translateY(100%); transition: transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94); }
-.product-page.open { transform: translateY(0); }
-.product-page-inner { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
-.pp-images { position: sticky; top: 0; height: 100vh; overflow: hidden; background: var(--cream); }
-.pp-main-img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.35s ease; }
-.pp-thumbs { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
-.pp-thumb { width: 52px; height: 52px; object-fit: cover; border-radius: 2px; cursor: pointer; opacity: 0.55; border: 2px solid transparent; transition: all 0.2s; }
-.pp-thumb.active { opacity: 1; border-color: var(--gold); }
-.pp-back { position: absolute; top: 20px; left: 20px; background: rgba(253,244,231,0.92); backdrop-filter: blur(8px); border: none; cursor: pointer; font-family: "Montserrat", sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 10px 18px; border-radius: 2px; color: var(--carbon); transition: all 0.2s; }
-.pp-back:hover { background: var(--carbon); color: var(--gold); }
-.pp-content { padding: 64px 56px; display: flex; flex-direction: column; justify-content: center; }
-.pp-tag { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 15px; font-weight: 300; color: var(--brown); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
-.pp-name { font-family: "Bebas Neue", sans-serif; font-size: 72px; line-height: 0.9; color: var(--carbon); margin-bottom: 6px; }
-.pp-volume { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 22px; font-weight: 300; color: var(--brown); margin-bottom: 24px; }
-.pp-price { font-family: "Bebas Neue", sans-serif; font-size: 52px; color: var(--carbon); line-height: 1; }
-.pp-price-sub { font-size: 12px; font-weight: 300; color: var(--brown); margin-bottom: 32px; margin-top: 4px; }
-.pp-desc { font-size: 14px; font-weight: 300; line-height: 1.9; color: var(--carbon); margin-bottom: 32px; border-left: 3px solid var(--gold); padding-left: 18px; }
-.pp-benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 40px; }
-.pp-benefit { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; font-weight: 400; line-height: 1.6; color: var(--carbon); }
-.pp-benefit-icon { font-size: 15px; flex-shrink: 0; }
-.pp-actions { display: flex; gap: 12px; }
-.pp-add { flex: 1; background: var(--carbon); color: var(--gold); border: none; cursor: pointer; font-family: "Montserrat", sans-serif; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; padding: 17px; border-radius: 2px; transition: all 0.2s; }
-.pp-add:hover { background: var(--gold); color: var(--carbon); }
-.pp-wa { background: #25D366; color: white; border: none; cursor: pointer; padding: 17px 20px; border-radius: 2px; transition: all 0.2s; text-decoration: none; display: flex; align-items: center; justify-content: center; }
-.pp-wa:hover { background: #1da851; }
-.pp-wa svg { width: 22px; height: 22px; fill: white; }
-.pp-meta { margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(44,44,44,0.09); display: flex; gap: 36px; }
-.pp-meta-item { display: flex; flex-direction: column; gap: 4px; }
-.pp-meta-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; color: var(--brown); }
-.pp-meta-value { font-family: "Bebas Neue", sans-serif; font-size: 20px; color: var(--carbon); }
+.product-page { position:fixed; inset:0; z-index:400; background:var(--cream-light); overflow-y:auto; transform:translateY(100%); transition:transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94); }
+.product-page.open { transform:translateY(0); }
+.product-page-inner { min-height:100vh; display:grid; grid-template-columns:1fr 1fr; }
+.pp-images { position:sticky; top:0; height:100vh; overflow:hidden; background:var(--cream); }
+.pp-main-img { width:100%; height:100%; object-fit:cover; transition:opacity 0.35s ease; }
+.pp-thumbs { position:absolute; bottom:24px; left:50%; transform:translateX(-50%); display:flex; gap:8px; }
+.pp-thumb { width:52px; height:52px; object-fit:cover; border-radius:2px; cursor:pointer; opacity:0.5; border:2px solid transparent; transition:all 0.2s; }
+.pp-thumb.active { opacity:1; border-color:var(--gold); }
+.pp-back { position:absolute; top:20px; left:20px; background:rgba(253,244,231,0.92); backdrop-filter:blur(8px); border:none; cursor:pointer; font-family:"Montserrat",sans-serif; font-size:11px; font-weight:800; letter-spacing:2px; text-transform:uppercase; padding:10px 18px; border-radius:2px; color:var(--carbon); transition:all 0.2s; }
+.pp-back:hover { background:var(--carbon); color:var(--gold); }
+.pp-content { padding:64px 56px; display:flex; flex-direction:column; justify-content:center; }
+.pp-tag { font-family:"Cormorant Garamond",serif; font-style:italic; font-size:15px; font-weight:300; color:var(--brown); letter-spacing:3px; text-transform:uppercase; margin-bottom:12px; }
+.pp-name { font-family:"Bebas Neue",sans-serif; font-size:72px; line-height:0.9; color:var(--carbon); margin-bottom:6px; }
+.pp-volume { font-family:"Cormorant Garamond",serif; font-style:italic; font-size:22px; font-weight:300; color:var(--brown); margin-bottom:24px; }
+.pp-price { font-family:"Bebas Neue",sans-serif; font-size:52px; color:var(--carbon); line-height:1; }
+.pp-price-sub { font-size:12px; font-weight:300; color:var(--brown); margin-bottom:32px; margin-top:4px; }
+.pp-desc { font-size:14px; font-weight:300; line-height:1.9; color:var(--carbon); margin-bottom:32px; border-left:3px solid var(--gold); padding-left:18px; }
+.pp-benefits { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:40px; }
+.pp-benefit { display:flex; align-items:flex-start; gap:8px; font-size:13px; font-weight:400; line-height:1.6; color:var(--carbon); }
+.pp-benefit-icon { font-size:15px; flex-shrink:0; }
+.pp-actions { display:flex; gap:12px; }
+.pp-add { flex:1; background:var(--carbon); color:var(--gold); border:none; cursor:pointer; font-family:"Montserrat",sans-serif; font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:3px; padding:17px; border-radius:2px; transition:all 0.2s; }
+.pp-add:hover { background:var(--gold); color:var(--carbon); }
+.pp-wa { background:#25D366; color:white; border:none; cursor:pointer; padding:17px 20px; border-radius:2px; transition:all 0.2s; text-decoration:none; display:flex; align-items:center; justify-content:center; }
+.pp-wa:hover { background:#1da851; }
+.pp-wa svg { width:22px; height:22px; fill:white; }
+.pp-meta { margin-top:32px; padding-top:24px; border-top:1px solid rgba(44,44,44,0.09); display:flex; gap:36px; }
+.pp-meta-item { display:flex; flex-direction:column; gap:4px; }
+.pp-meta-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2.5px; color:var(--brown); }
+.pp-meta-value { font-family:"Bebas Neue",sans-serif; font-size:20px; color:var(--carbon); }
 
 /* WOMPI */
-.wompi-overlay { position: fixed; inset: 0; z-index: 500; background: rgba(44,44,44,0.75); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
-.wompi-overlay.open { opacity: 1; pointer-events: all; }
-.wompi-modal { background: var(--cream-light); border-radius: 4px; padding: 48px; width: 480px; max-width: 92vw; box-shadow: 0 40px 80px rgba(0,0,0,0.3); transform: scale(0.9) translateY(20px); transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1); }
-.wompi-overlay.open .wompi-modal { transform: scale(1) translateY(0); }
-.wompi-title { font-family: "Bebas Neue", sans-serif; font-size: 38px; letter-spacing: 2px; color: var(--carbon); margin-bottom: 6px; }
-.wompi-sub { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 16px; color: var(--brown); margin-bottom: 32px; }
-.wompi-order { background: var(--cream); padding: 24px; border-radius: 2px; margin-bottom: 28px; }
-.wompi-row { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 10px; }
-.wompi-row:last-child { margin-bottom: 0; border-top: 1px solid rgba(0,0,0,0.08); padding-top: 12px; margin-top: 4px; }
-.wompi-total-val { font-family: "Bebas Neue", sans-serif; font-size: 26px; color: var(--carbon); }
-.wompi-note { font-size: 12px; font-weight: 300; color: var(--brown); margin-bottom: 20px; background: rgba(249,195,1,0.1); padding: 14px 16px; border-radius: 2px; border-left: 3px solid var(--gold); line-height: 1.7; }
-#wompi-container { margin-bottom: 20px; }
-.wompi-cancel { width: 100%; background: none; border: none; cursor: pointer; font-family: "Montserrat", sans-serif; font-size: 11px; font-weight: 700; color: var(--brown); text-transform: uppercase; letter-spacing: 2px; padding: 10px; transition: color 0.2s; }
-.wompi-cancel:hover { color: var(--carbon); }
+.wompi-overlay { position:fixed; inset:0; z-index:500; background:rgba(44,44,44,0.75); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.3s; }
+.wompi-overlay.open { opacity:1; pointer-events:all; }
+.wompi-modal { background:var(--cream-light); border-radius:4px; padding:48px; width:480px; max-width:92vw; box-shadow:0 40px 80px rgba(0,0,0,0.3); transform:scale(0.9) translateY(20px); transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+.wompi-overlay.open .wompi-modal { transform:scale(1) translateY(0); }
+.wompi-title { font-family:"Bebas Neue",sans-serif; font-size:38px; letter-spacing:2px; color:var(--carbon); margin-bottom:6px; }
+.wompi-sub { font-family:"Cormorant Garamond",serif; font-style:italic; font-size:16px; color:var(--brown); margin-bottom:32px; }
+.wompi-order { background:var(--cream); padding:24px; border-radius:2px; margin-bottom:28px; }
+.wompi-row { display:flex; justify-content:space-between; font-size:14px; margin-bottom:10px; }
+.wompi-row:last-child { margin-bottom:0; border-top:1px solid rgba(0,0,0,0.08); padding-top:12px; margin-top:4px; }
+.wompi-total-val { font-family:"Bebas Neue",sans-serif; font-size:26px; color:var(--carbon); }
+.wompi-note { font-size:12px; font-weight:300; color:var(--brown); margin-bottom:20px; background:rgba(249,195,1,0.1); padding:14px 16px; border-radius:2px; border-left:3px solid var(--gold); line-height:1.7; }
+#wompi-container { margin-bottom:20px; }
+.wompi-cancel { width:100%; background:none; border:none; cursor:pointer; font-family:"Montserrat",sans-serif; font-size:11px; font-weight:700; color:var(--brown); text-transform:uppercase; letter-spacing:2px; padding:10px; transition:color 0.2s; }
+.wompi-cancel:hover { color:var(--carbon); }
 
 /* REVEAL */
-.reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease,transform 0.7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
 
 /* ANIMATIONS */
-@keyframes fadeUp { from { opacity: 0; transform: translateY(32px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-@keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-@keyframes pulse-wa { 0%,100% { box-shadow: 0 8px 28px rgba(37,211,102,0.4); } 50% { box-shadow: 0 8px 44px rgba(37,211,102,0.65); } }
+@keyframes fadeUp { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+@keyframes spin-slow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+@keyframes pulse-wa { 0%,100%{box-shadow:0 8px 28px rgba(37,211,102,0.4)} 50%{box-shadow:0 8px 44px rgba(37,211,102,0.65)} }
 
 /* RESPONSIVE */
-@media (max-width: 960px) {
-  nav { padding: 12px 24px; }
-  .nav-links { display: none; }
-  #home { grid-template-columns: 1fr; }
-  .hero-right { height: 56vw; }
-  .hero-right::after { background: linear-gradient(to top, var(--cream-light) 0%, transparent 40%); }
-  .hero-left { padding: 40px 24px; }
-  #tienda, #beneficios, .about-section { padding: 72px 24px; }
-  .products-grid { grid-template-columns: 1fr; }
-  .benefits-grid { grid-template-columns: 1fr 1fr; }
-  .gallery-strip { grid-template-columns: 1fr 1fr; height: 220px; }
-  .about-section { grid-template-columns: 1fr; gap: 40px; }
-  .section-header { flex-direction: column; align-items: flex-start; gap: 12px; }
-  .section-sub { text-align: left; max-width: 100%; }
-  .product-page-inner { grid-template-columns: 1fr; }
-  .pp-images { position: relative; height: 65vw; }
-  .pp-content { padding: 36px 24px; }
-  .pp-name { font-size: 52px; }
-  .cart-drawer { width: 100%; }
-  footer { padding: 48px 24px 32px; }
-  .footer-top { grid-template-columns: 1fr; gap: 32px; }
-  .cta-section { padding: 56px 24px; }
-  .cta-h2 { font-size: 48px; }
+@media (max-width:960px) {
+  nav { padding:12px 24px; } .nav-links { display:none; }
+  #home { grid-template-columns:1fr; }
+  .hero-right { height:55vw; } .hero-right::after { background:linear-gradient(to top,var(--cream-light) 0%,transparent 40%); }
+  .hero-left { padding:40px 24px; }
+  #tienda,#beneficios,.about-section { padding:72px 24px; }
+  .tienda-header { flex-direction:column; align-items:flex-start; gap:12px; } .section-sub { text-align:left; max-width:100%; }
+  .products-grid { grid-template-columns:1fr; } .product-card { height:460px; }
+  .benefits-grid { grid-template-columns:1fr; }
+  .gallery-strip { grid-template-columns:1fr 1fr; height:200px; }
+  .about-section { grid-template-columns:1fr; gap:40px; } .about-img::after { display:none; }
+  .product-page-inner { grid-template-columns:1fr; }
+  .pp-images { position:relative; height:65vw; } .pp-content { padding:36px 24px; } .pp-name { font-size:52px; }
+  .cart-drawer { width:100%; }
+  footer { padding:48px 24px 32px; } .footer-top { grid-template-columns:1fr; gap:32px; }
+  .cta-section { padding:60px 24px; } .cta-h2 { font-size:52px; }
 }
 </style>
 </head>
@@ -309,7 +291,7 @@ footer { background: var(--carbon); padding: 56px 80px 36px; color: rgba(255,255
 
 <!-- TIENDA -->
 <section id="tienda">
-  <div class="section-header reveal">
+  <div class="tienda-header reveal">
     <div>
       <span class="section-label">Nuestra colección</span>
       <h2 class="section-h2">Elige<br><span class="outline">Tu Miel</span></h2>
@@ -318,10 +300,8 @@ footer { background: var(--carbon); padding: 56px 80px 36px; color: rgba(255,255
   </div>
   <div class="products-grid">
     <div class="product-card reveal" onclick="openProduct('350')">
-      <div class="card-img">
-        <img id="card-img-350" src="" alt="Miel 350ml">
-        <span class="card-size-badge">350 ML</span>
-      </div>
+      <div class="card-img"><img id="card-img-350" src="" alt="Miel 350ml"></div>
+      <span class="card-size-badge">350 ML</span>
       <div class="card-body">
         <h3 class="card-name">Miel Pura</h3>
         <p class="card-sub">Presentación personal — perfecta para el día a día</p>
@@ -332,10 +312,8 @@ footer { background: var(--carbon); padding: 56px 80px 36px; color: rgba(255,255
       </div>
     </div>
     <div class="product-card reveal" onclick="openProduct('750')">
-      <div class="card-img">
-        <img id="card-img-750" src="" alt="Miel 750ml">
-        <span class="card-size-badge">750 ML</span>
-      </div>
+      <div class="card-img"><img id="card-img-750" src="" alt="Miel 750ml"></div>
+      <span class="card-size-badge">750 ML</span>
       <div class="card-body">
         <h3 class="card-name">Miel Pura</h3>
         <p class="card-sub">Presentación familiar — más miel, más vida</p>
@@ -364,21 +342,25 @@ footer { background: var(--carbon); padding: 56px 80px 36px; color: rgba(255,255
   </div>
   <div class="benefits-grid">
     <div class="benefit-item reveal">
+      <span class="benefit-num">01</span>
       <span class="benefit-icon">🛡️</span>
       <h3 class="benefit-title">Refuerza tus defensas</h3>
       <p class="benefit-desc">Rica en antioxidantes y propiedades antimicrobianas que fortalecen tu sistema inmune de forma completamente natural.</p>
     </div>
     <div class="benefit-item reveal">
+      <span class="benefit-num">02</span>
       <span class="benefit-icon">⚡</span>
       <h3 class="benefit-title">Energía natural</h3>
       <p class="benefit-desc">Fuente de carbohidratos naturales que proveen energía sostenida sin los picos glucémicos del azúcar refinada.</p>
     </div>
     <div class="benefit-item reveal">
+      <span class="benefit-num">03</span>
       <span class="benefit-icon">🌿</span>
       <h3 class="benefit-title">100% sin procesar</h3>
       <p class="benefit-desc">Sin conservantes, sin aditivos, sin mezclas. Lo que ves es exactamente lo que la naturaleza y las abejas produjeron.</p>
     </div>
     <div class="benefit-item reveal">
+      <span class="benefit-num">04</span>
       <span class="benefit-icon">💛</span>
       <h3 class="benefit-title">Cuida tu piel</h3>
       <p class="benefit-desc">Sus propiedades hidratantes, antibacterianas y cicatrizantes la convierten en aliada de tu salud por dentro y por fuera.</p>
